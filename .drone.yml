@@ -1,0 +1,31 @@
+platform: linux/arm
+
+clone:
+    git:
+        image: plugins/git:linux-arm
+        recursive: true
+
+pipeline:
+    build:
+        image: arm32v7/node
+        commands:
+            - npm -g install gitbook-cli
+            - gitbook install
+            - gitbook build
+
+    push:
+        image: plugins/git:linux-arm
+        environment:
+            - GIT_COMMITTER_NAME='Bot'
+            - GIT_COMMITTER_EMAIL='<>'
+            - GIT_AUTHOR_NAME='Bot'
+            - GIT_AUTHOR_EMAIL='<>'
+        commands:
+            - mv ./_book ../
+            - git fetch --all
+            - git checkout pages
+            - rm -rf *
+            - mv ../_book/* ../_book/.[!.]* ../_book/..?* ./ || true
+            - git add .
+            - git commit -m '[SKIP CI] Updated generated site'
+            - git push -f
