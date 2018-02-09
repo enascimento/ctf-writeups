@@ -1,0 +1,191 @@
+# GryphonCTF_2016: Anomaly
+
+**Category:** Programming
+**Points:** 25
+**Description:**
+
+>I have made this file by using SHA-512 512 times on every number from 1 to 1000000. The first round uses the string format of the number while subsequent rounds uses the hex digest of previous rounds. However there are some anomalies in the file when Qiurong ran the same program. Can you find out the anomaly for me?
+[Alternative (faster) download link](https://mega.nz/#!rMBiwD7S!6Z232YHiY1rkLzLJ6SYZhDGSTsNtlRKhlyEroFmBFHM)
+WARNING: 123MB file
+Creator - Kelvin Neo (@deathline75)
+
+## Write-up
+**_A WONDERFUL CHALLENGE BY @DEATHLINE75 /s_**.
+
+We have a file, about 1000000 lines long and it's big and thus I won't be giving a download link. First up, we generate our own file to check back with the given file.
+
+    import hashlib
+
+    hashes = []
+    for i in range(1000000):
+        hash = str(i)
+        for iters in range(512):
+            hash = hashlib.sha512(hash).hexdigest()
+
+    with open('hashes.txt', 'w') as file:
+        for line in hashes:
+            file.write(line + '\n')
+
+Comparing the two files, we get, 
+
+    ===
+    51078
+    ======
+    79e14f7e16192678e4f202aaac5d0ec8d90f28a4ebe467588f175abdc601678d6544f977c81eba9d1c4a95c34fda85752b19098b827f2bbc876db1553617ca96 !=  79e14f7e16192678e4f202aaac5d0ec8d90f28a4ebe467588f175abdc601678d6544f977c81eba9d1c4a95c34fda85752b19098b827f2bbc876db1553617ca4f
+    ===
+    53477
+    ======
+    cd86dd387a943bb25b2fd81ba88ec1f9cdbcbfc3ab3d9ecd1c762a55920bb3f3a3a783b86c20708d8cbc357968dc7f2680f3d9f6de140a86de22806d5848c7f4 != cd86dd387a943bb25b2fd81ba88ec1f9cdbcbfc3ab3d9ecd1c762a55920bb3f3a3a783b86c20708d8cbc357968dc7f2680f3d9f6de140a86de22806d5848c837
+    ===
+    165716
+    ======
+    82e98cd1d1f9a0e33b8a0442f6f33a32e15f18a716f81307c1dee6bc854f42dc0e83cfdd83be2ebcc5bca8b97d02762d04160948e030e259b545c0e11a66711a != 82e98cd1d1f9a0e33b8a0442f6f33a32e15f18a716f81307c1dee6bc854f42dc0e83cfdd83be2ebcc5bca8b97d02762d04160948e030e259b545c0e11a6670c6
+    ===
+    244162
+    ======
+    86f5a78aa20de48dabadb5868386e01fdd793292217e77fd8f8de2e3863b9d3f811fe8b6c5d85446355f187d3ef7774595a382ce163699826c0d2e8008ca9251 != 86f5a78aa20de48dabadb5868386e01fdd793292217e77fd8f8de2e3863b9d3f811fe8b6c5d85446355f187d3ef7774595a382ce163699826c0d2e8008ca920b
+    ===
+    256030
+    ======
+    7dab38088e97401ab1ee3d6389c49047eb23b10895f78299487d3fedbc54ca3cb127910c111c06082addb396f5957c0c9038d725a76999048a2d62620eb8ee4e != 7dab38088e97401ab1ee3d6389c49047eb23b10895f78299487d3fedbc54ca3cb127910c111c06082addb396f5957c0c9038d725a76999048a2d62620eb8edd3
+    ===
+    259971
+    ======
+    2d3d1644ac279cfe75a36cfb2ea53c16622fbec3716884df120f1bc9aafd47c48e3f9aee16e32512057bf656cf40d5a6392b9efa82a6fc21beb859c09a853a9a != 2d3d1644ac279cfe75a36cfb2ea53c16622fbec3716884df120f1bc9aafd47c48e3f9aee16e32512057bf656cf40d5a6392b9efa82a6fc21beb859c09a853acf
+    ===
+    339025
+    ======
+    dcd2acaa313c861acb7c4d3128df2b8035c3a3124d9f9554cb95d88686fa20dffa6379e7e04dcece28d0c21f0907af8cc4792f6b259d9cf5a6ab74792b8d9c7d != dcd2acaa313c861acb7c4d3128df2b8035c3a3124d9f9554cb95d88686fa20dffa6379e7e04dcece28d0c21f0907af8cc4792f6b259d9cf5a6ab74792b8d9ce5
+    ===
+    423605
+    ======
+    b15d73389d194feea6eb4a27e52f52cd7b86033746d0f0c27c2c8a50a593b94c101a49073e4fc6313f52298719ce2236f40739140d713eafb20eddfb42ba3dae != b15d73389d194feea6eb4a27e52f52cd7b86033746d0f0c27c2c8a50a593b94c101a49073e4fc6313f52298719ce2236f40739140d713eafb20eddfb42ba3de2
+    ===
+    434116
+    ======
+    79c827550005100f4604d48c4057cad429c47785f8725f444915a6fdf7b7ae15232ceee4ed08fc64714c7c3a9bf2409f3ed095d4f479e1458f16f00175f2379a != 79c827550005100f4604d48c4057cad429c47785f8725f444915a6fdf7b7ae15232ceee4ed08fc64714c7c3a9bf2409f3ed095d4f479e1458f16f00175f2376d
+    ===
+    442288
+    ======
+    8fa90152c8419a4b8953e9140731f0218b53968d5475926a0ff319e6a0c2dd65a6ea57713a765434d87fbec32d8373856fa85fb716dd02f6262f6ad8e64277ce != 8fa90152c8419a4b8953e9140731f0218b53968d5475926a0ff319e6a0c2dd65a6ea57713a765434d87fbec32d8373856fa85fb716dd02f6262f6ad8e642775c
+    ===
+    480014
+    ======
+    698c4f43443a84d575c45417afc8c6834d42c61405e5f3d13e99f387519b807630401677284cc90b4b89779f244adbc5c7d7d5670db7f14166c8b8ddc1bfe521 != 698c4f43443a84d575c45417afc8c6834d42c61405e5f3d13e99f387519b807630401677284cc90b4b89779f244adbc5c7d7d5670db7f14166c8b8ddc1bfe4af
+    ===
+    518215
+    ======
+    ea583b10dc85bbdd1b4a3d8c26da477edd974420dc6118585eab9f644ca6d259ce3f425fef486c884c6574b7b2478743e8aa092e1beebad8eb9e3e39453bbd19 != ea583b10dc85bbdd1b4a3d8c26da477edd974420dc6118585eab9f644ca6d259ce3f425fef486c884c6574b7b2478743e8aa092e1beebad8eb9e3e39453bbd92
+    ===
+    523064
+    ======
+    44416ef05be7876d3ae98a0d9d5e383a6e7b89a83cfb20f2ea976dd78f3309a6b53123b4b3013bc2157ca9ab4f593bd2cd65278c18aae3b588ede6296a3cfedc != 44416ef05be7876d3ae98a0d9d5e383a6e7b89a83cfb20f2ea976dd78f3309a6b53123b4b3013bc2157ca9ab4f593bd2cd65278c18aae3b588ede6296a3cfe7d
+    ===
+    525137
+    ======
+    356adb1a8aacfff6cc63eda8553d4714581501318f2e3400bbe3e07756e4ddf4083ace119e8fe12a7d4020d63a9ea17bb6d8394557b85c0c0b9b049b21f85cb8 != 356adb1a8aacfff6cc63eda8553d4714581501318f2e3400bbe3e07756e4ddf4083ace119e8fe12a7d4020d63a9ea17bb6d8394557b85c0c0b9b049b21f85ced
+    ===
+    538035
+    ======
+    0b625bfbaf9aabb35dc885f379cdc0e2e4d1aa80d33380789fa7097a75c7ae56aacd7cc6c770a1c674da33c1b02ddd644e4601297079c91301ae7fbc9bcb0f33 != 0b625bfbaf9aabb35dc885f379cdc0e2e4d1aa80d
+     33380789fa7097a75c7ae56aacd7cc6c770a1c674da33c1b02ddd644e4601297079c91301ae7fbc9bcb0f9b
+    ===
+    613916
+    ======
+    dd92300d2b36b86cfbb6c7b3742063f487fa04fe8f49e4a329a3ae293bc912e8032b07d94668e845bc96e5c3d74cb6ee8dda629882add6191f231fb776e6e3d8 != dd92300d2b36b86cfbb6c7b3742063f487fa04fe8f49e4a329a3ae293bc912e8032b07d94668e845bc96e5c3d74cb6ee8dda629882add6191f231fb776e6e3a4
+    ===
+    616679
+    ======
+    875beba523c9361a38f1474cca161a11f8b429640c0e8bf330ea50f7894f1263bd6ddf9901689d71a6685f6ae3457379220e88026b2a39c4ea37dd6cd05c9ebe != 875beba523c9361a38f1474cca161a11f8b429640c0e8bf330ea50f7894f1263bd6ddf9901689d71a6685f6ae3457379220e88026b2a39c4ea37dd6cd05c9eeb
+    ===
+    626301
+    ======
+    9a109cec88210524e7e647505ecc1cf385c5632275b8591f189a5358bb570aaf5ad3e5906e2bdd39fc4214b58391c479d078101128237193831825c237739c92 != 9a109cec88210524e7e647505ecc1cf385c5632275b8591f189a5358bb570aaf5ad3e5906e2bdd39fc4214b58391c479d078101128237193831825c237739d04
+    ===
+    641793
+    ======
+    5d7775af25bf7c6ee7c5145de74fa35778fd228a8ad2ab39279db92244bcef7e1fe520aa4d165eb3dbd7bf535b219dd104fda8ad8473cba7a500fcfff9be8ac8 != 5d7775af25bf7c6ee7c5145de74fa35778fd228a8ad2ab39279db92244bcef7e1fe520aa4d165eb3dbd7bf535b219dd104fda8ad8473cba7a500fcfff9be8b3a
+    ===
+    660095
+    ======
+    fdba2c65e9dfebe2b1c1afc714ed9a3c33f4a872d9ffa09f67e07f02c11422ea5d381175c851a969e85f9b2451e80502e12d043abdc99f79be0cdbad31e0445b != fdba2c65e9dfebe2b1c1afc714ed9a3c33f4a872d9ffa09f67e07f02c11422ea5d381175c851a969e85f9b2451e80502e12d043abdc99f79be0cdbad31e044d4
+    ===
+    704921
+    ======
+    bef8c892187ae2c4c1bd6db6ea3102d57f21c053c2d92119e482459e71cf003d4a4186986671136aa66bd2f95fc1936df1980b884850a1340ce6bd5cfdb9879c != bef8c892187ae2c4c1bd6db6ea3102d57f21c053c2d92119e482459e71cf003d4a4186986671136aa66bd2f95fc1936df1980b884850a1340ce6bd5cfdb987fb
+    ===
+    773589
+    ======
+    c10b537a5d07331ba46ea8e6368c191c17160a6984bfee8db7d27f2f1db2bbed19f2dc03c72930e3b7b815196c5b53ee8fb728fb9f37ab8d6f5da6f630df228e != c10b537a5d07331ba46ea8e6368c191c17160a6984bfee8db7d27f2f1db2bbed19f2dc03c72930e3b7b815196c5b53ee8fb728fb9f37ab8d6f5da6f630df22fc
+    ===
+    786375
+    ======
+    b0e8232e6faee3b7827020ef0d07cf9068872035332d57d9bcba0ba505024c107dbceb0356217fb0f0026d4176a8b0a990ea8439269804f207babb108d2d90da != b0e8232e6faee3b7827020ef0d07cf9068872035332d57d9bcba0ba505024c107dbceb0356217fb0f0026d4176a8b0a990ea8439269804f207babb108d2d910b
+    ===
+    812113
+    ======
+    856b15b031a2c3b1221f35fd46f0263bdd32d884d3608712d98cae60d3771a9eda5d5dbf68ceb6428fa82c755b5dd0fcdc60803ca6e67997ca258daaad25df1b != 856b15b031a2c3b1221f35fd46f0263bdd32d884d3608712d98cae60d3771a9eda5d5dbf68ceb6428fa82c755b5dd0fcdc60803ca6e67997ca258daaad25df51
+    ===
+    819872
+    ======
+    731d52c08f8761e11ad2dd849df7ec25522b82af38d8facc9d8aac12275d20e419b5b427eece9c1776840d57ce2a6d8266a35bdb28407af4e4ad33d91170e6f6 != 731d52c08f8761e11ad2dd849df7ec25522b82af38d8facc9d8aac12275d20e419b5b427eece9c1776840d57ce2a6d8266a35bdb28407af4e4ad33d91170e68e
+    ===
+    833648
+    ======
+    48ed7448cfd5cfa027481694e0181015844f3901b68260ddad96814eb5a8bc4d2de65b938ed34ca2ca61e95ec43abdb925ca87351beed522eccf7228e01ed6fe != 48ed7448cfd5cfa027481694e0181015844f3901b68260ddad96814eb5a8bc4d2de65b938ed34ca2ca61e95ec43abdb925ca87351beed522eccf7228e01ed6c7
+    ===
+    883221
+    ======
+    fd69c00d3cd773062118dbfa0e2cb1d4157e10e11aba801bdbc38ef335bf11336a4efa9f87d05c305777a58f0019f99ac76cf2a6217465974518900e575cc678 != fd69c00d3cd773062118dbfa0e2cb1d4157e10e11aba801bdbc38ef335bf11336a4efa9f87d05c305777a58f0019f99ac76cf2a6217465974518900e575cc6f5
+
+Hmm... what now? Removing similar characters, we get
+
+    96 != 4f
+    7f4 != 837
+    11a != 0c6
+    51 != 0b
+    e4e != dd3
+    9a != cf
+    c7d != ce5
+    ae != e2
+    9a != 6d
+    ce != 5c
+    521 != 4af
+    19 != 92
+    dc != 7d
+    b8 != ed
+    33 != 9b
+    d8 != a4
+    be != eb
+    c92 != d04
+    ac8 != b3a
+    5b != d4
+    9c != fb
+    8e != fc
+    0da != 10b
+    1b != 51
+    f6 != 8e
+    fe != c7
+    78 != f5
+
+Hmm... Converting `GCTF` into hexadecimal, we get `47 43 54 46`. Let's try a few things.
+
+    967f411a51e4e9ac7dae9ace52119dcb833d8bec92ac85b9c8e0da1bf6fe78 [all length]
+    96f41a514e9a7dae9ace2119dcb833d8be92c85b9c8eda1bf6fe78 [trunc 2 bit]
+
+    4f8370c60bdd3cfce5e26d5c4af927ded9ba4ebd04b3ad4fbfc10b518ec7f5 [all length]
+    4f37c60bd3cfe5e26d5caf927ded9ba4eb043ad4fbfc0b518ec7f5 [trunc 2 bit]
+
+    967f411a51e4e9ac7dae9ace52119dcb833d8bec92ac85b9c8e0da1bf6fe78 = AQäé¬}®ÎRË=ì¬¹ÈàÚöþx
+    4f8370c60bdd3cfce5e26d5c4af927ded9ba4ebd04b3ad4fbfc10b518ec7f5 = OpÆÝ<üåâm\Jù'ÞÙºN½³­O¿ÁQÇõ
+
+That's not right... Let's try hex-wise calculations...
+
+    96 - 4f = 47
+    837 - 7f4 = 43
+
+Are we on to something? Hmm... I am lazy and thus made a [script](script.py) that would do all these for me!
+
+    ./script.py
+    1000001 / 1000001 completed
+    FLAG: GCTF{5h4-rry_5h4-rry_n16h7}

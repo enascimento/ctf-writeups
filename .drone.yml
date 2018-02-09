@@ -24,7 +24,7 @@ pipeline:
             - mv ./_book ../
             - git fetch --all
             - git checkout pages
-            - rm -rf *
+            - rm -rf .drone.yml *
             - mv ../_book/* ../_book/.[!.]* ../_book/..?* ./ || true
             - git add .
             - git commit -m '[SKIP CI] Updated generated site'
