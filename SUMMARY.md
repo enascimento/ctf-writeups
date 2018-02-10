@@ -141,3 +141,25 @@
         + [Hash Killer_60](/2017/pactf_2017/boole/hash-killer_60/README.md)
         + [Synesthesia_60](/2017/pactf_2017/boole/synesthesia_60/README.md)
         + [The Gamble_20](/2017/pactf_2017/boole/the-gamble_20/README.md)
+* [HSCTF 2017](/2017/hsctf_2017/README.md)
+    - Algo
+        + [Coin-Flip_100](/2017/hsctf_2017/algo/coin-flip_100)
+        + [Ping-Pong_200](/2017/hsctf_2017/algo/ping-pong_200)
+    - Crypto
+        + [Hidden-Polynomials_100](/2017/hsctf_2017/crypto/hidden-polynomials_100)
+        + [Quartenary_100](/2017/hsctf_2017/crypto/quartenary_100)
+        + [Alice-and-Bob_200](/2017/hsctf_2017/crypto/alice-and-bob_200)
+        + [Keith-and-Dawg-2_200](/2017/hsctf_2017/crypto/keith-and-dawg-2_200)
+    - Exploitation
+        + [El-Clasico_100](/2017/hsctf_2017/exploitation/el-clasico_100)
+        + [Keith-Shell_100](/2017/hsctf_2017/exploitation/keith-shell_100)
+        + [Python-Exploitation-1_100](/2017/hsctf_2017/exploitation/python-exploitation-1_100)
+        + [Python-Exploitation-2_200](/2017/hsctf_2017/exploitation/python-exploitation-2_200)
+    - Forensics
+        + [Survey_50](/2017/hsctf_2017/forensics/survey_50)
+        + [Basic-Bucketfill_100](/2017/hsctf_2017/forensics/basic-bucketfill_100)
+        + [Keith-and-Dawg-1_100](/2017/hsctf_2017/forensics/keith-and-dawg-1_100)
+        + [Easy-Stegosaurus_200](/2017/hsctf_2017/forensics/easy-stegosaurus_200)
+    - Reversal
+        + [Keithor_100](/2017/hsctf_2017/reversal/keithor_100)
+        + [Ke1th_200](/2017/hsctf_2017/reversal/ke1th_200)
