@@ -1,14 +1,10 @@
 platform: linux/arm
 
-clone:
-    git:
-        image: plugins/git:linux-arm
-        recursive: true
-
 pipeline:
     build:
         image: arm32v7/node
         commands:
+            - cat SUMMARIES/* > SUMMARY.md
             - npm -g install gitbook-cli
             - gitbook install
             - gitbook build
