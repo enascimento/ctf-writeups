@@ -1,0 +1,2 @@
+# PACTF 2017 Writeup
+So, just another writeup and yet another reflection. Bartik was rather easy and fun though quite a troll round. Boole was harder than Bartik and that it also had binaries compiled for the latest versions of GLIBC that I didn't bother to install. In a nutshell, I didn't finish the binaries because I was way too lazy to install the dependencies.
