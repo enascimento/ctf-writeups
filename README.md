@@ -15,13 +15,13 @@ This are all the CTF competitions I have participated in chronological order. Ra
 | [EasyCTF 2018][A7]        | [2/1791 Finals][B7]                           |
 
 [//]: # (Links to the subfolders)
-[A1]: /2016/gryphonctf_2016
-[A2]: /2017/picoctf_2017
-[A3]: /2017/pactf_2017
-[A4]: /2017/hsctf_2017
-[A5]: /2017/crossctf_2017
-[A6]: /2017/csawctf_2017
-[A7]: /2018/easyctf_2018
+[A1]: /2016/gryphonctf_2016/README.md
+[A2]: /2017/picoctf_2017/README.md
+[A3]: /2017/pactf_2017/README.md
+[A4]: /2017/hsctf_2017/README.md
+[A5]: /2017/crossctf_2017/README.md
+[A6]: /2017/csawctf_2017/README.md
+[A7]: /2018/easyctf_2018/README.md
 
 [//]: # (Links to scoreboards)
 [B1]: https://github.com/DISMGryphons/GryphonCTF/blob/gh-pages/index.html

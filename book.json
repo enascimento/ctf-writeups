@@ -1,5 +1,13 @@
 {
     "title": "LFlare's Writeups",
     "root": "./",
-    "plugins": ["expandable-chapters"]
+    "plugins": [
+        "expandable-chapters",
+        "github"
+    ],
+    "pluginsConfig": {
+        "github": {
+            "url": "https://github.com/LFlare/ctf-writeups"
+        }
+    }
 }
