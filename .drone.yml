@@ -1,8 +1,6 @@
-platform: linux/arm
-
 pipeline:
     build:
-        image: arm32v7/node
+        image: node
         commands:
             - cat SUMMARIES/* > SUMMARY.md
             - npm -g install gitbook-cli
@@ -10,7 +8,7 @@ pipeline:
             - gitbook build
 
     push:
-        image: plugins/git:linux-arm
+        image: plugins/git
         environment:
             - GIT_COMMITTER_NAME='Bot'
             - GIT_COMMITTER_EMAIL='<>'
@@ -20,7 +18,7 @@ pipeline:
             - mv ./_book ../
             - git fetch --all
             - git checkout pages
-            - rm -rf *
+            - mv * ../
             - mv ../_book/* ../_book/.[!.]* ../_book/..?* ./ || true
             - git add .
             - git commit -m '[SKIP CI] Updated generated site'
