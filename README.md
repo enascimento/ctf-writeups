@@ -12,6 +12,7 @@ This are all the CTF competitions I have participated in chronological order. Ra
 | [HSCTF 2017][A4]          | [76/1055][B4]                                 |
 | [CrossCTF 2017][A5]       | [4/57 Qualifiers 7/19 Finals][B5]             |
 | [CSAWCTF 2017][A6]        | [174/1444 Qualifiers][B6]                     |
+| [EasyCTF 2018][A7]        | [2/1791 Finals][B7]                           |
 
 [//]: # (Links to the subfolders)
 [A1]: /2016/gryphonctf_2016
@@ -20,6 +21,7 @@ This are all the CTF competitions I have participated in chronological order. Ra
 [A4]: /2017/hsctf_2017
 [A5]: /2017/crossctf_2017
 [A6]: /2017/csawctf_2017
+[A7]: /2018/easyctf_2018
 
 [//]: # (Links to scoreboards)
 [B1]: https://github.com/DISMGryphons/GryphonCTF/blob/gh-pages/index.html
@@ -28,3 +30,4 @@ This are all the CTF competitions I have participated in chronological order. Ra
 [B4]: https://play.hsctf.com/scoreboard/
 [B5]: https://crossctf.github.io/
 [B6]: https://ctf.csaw.io/scoreboard
+[B7]: https://easyctf.com/scoreboard
