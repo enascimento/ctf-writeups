@@ -14,12 +14,12 @@ This are all the CTF competitions I have participated in chronological order. Ra
 | [CSAWCTF 2017][A6]        | [174/1444 Qualifiers][B6]                     |
 
 [//]: # (Links to the subfolders)
-[A1]: gryphonctf_2016
-[A2]: picoctf_2017
-[A3]: pactf_2017
-[A4]: hsctf_2017
-[A5]: crossctf_2017
-[A6]: csawctf_2017
+[A1]: /2016/gryphonctf_2016
+[A2]: /2017/picoctf_2017
+[A3]: /2017/pactf_2017
+[A4]: /2017/hsctf_2017
+[A5]: /2017/crossctf_2017
+[A6]: /2017/csawctf_2017
 
 [//]: # (Links to scoreboards)
 [B1]: https://github.com/DISMGryphons/GryphonCTF/blob/gh-pages/index.html
