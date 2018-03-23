@@ -2,7 +2,7 @@ pipeline:
     build:
         image: node
         commands:
-            - cat SUMMARIES/* > SUMMARY.md
+            - ./preprocess.sh
             - npm -g install gitbook-cli
             - gitbook install
             - gitbook build
